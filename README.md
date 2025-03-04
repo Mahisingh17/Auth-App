@@ -51,7 +51,7 @@ This project is an **authentication system** built using **ReactJS (frontend) an
 
 ### **📌 Clone the Repository**
 ```sh
-git clone [https://github.com/Mahisingh17/Weather-App.git](https://github.com/Mahisingh17/Auth-App)
+git clone https://github.com/Mahisingh17/Auth-App
 cd weather-app
 ```
 
