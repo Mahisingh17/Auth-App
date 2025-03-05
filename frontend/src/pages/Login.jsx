@@ -3,8 +3,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Form, Input, Button, message } from 'antd';
 import { debounce } from 'lodash'; 
+import Cookies from 'js-cookie';
 
-const Login = () => {
+const Login = ({ setIsAuthenticated }) => {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
@@ -13,9 +14,10 @@ const Login = () => {
         try {
             const response = await axios.post('http://localhost:3000/auth/login', values);
             if (response.status === 201) {
-                localStorage.setItem('token', response.data.token);
+                Cookies.set('auth_token', response.data.token, { expires: 3, path: '/' });
+                setIsAuthenticated(true); // ✅ Update state immediately
                 message.success('Login successful');
-                navigate('/');
+                navigate('/'); // ✅ Redirect to profile
             }
         } catch (err) {
             message.error('Login failed. Please check your credentials.');
