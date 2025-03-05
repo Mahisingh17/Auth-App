@@ -49,8 +49,8 @@ const Profile = ({setIsAuthenticated}) => {
 
      const handleLogout = () => {
             Cookies.remove('auth_token', { path: '/' });
-            setIsAuthenticated(false); // Remove cookie globally
-            navigate('/login'); // Redirect to login page
+            setIsAuthenticated(false);
+            navigate('/login');
         };
 
     return (

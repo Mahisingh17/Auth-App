@@ -2,13 +2,11 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Form, Input, Button, message } from 'antd';
-import { debounce } from 'lodash'; // Import Lodash debounce
+import { debounce } from 'lodash';
 
 const Register = () => {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
-
-    // Handle registration (debounced)
     const handleRegister = debounce(async (values) => {
         setLoading(true);
         try {
@@ -23,15 +21,13 @@ const Register = () => {
         } finally {
             setLoading(false);
         }
-    }, 500); // 500ms debounce time
+    }, 500);
 
     return (
         <div className="flex justify-center items-center h-screen bg-gray-100">
             <div className="shadow-lg px-8 py-5 border w-80 bg-white rounded-md">
                 <h2 className="text-lg font-bold mb-4 text-center text-gray-900">Register</h2>
-                
                 <Form layout="vertical" onFinish={handleRegister}>
-                    {/* Username Input */}
                     <Form.Item
                         label="Username"
                         name="username"
@@ -39,8 +35,6 @@ const Register = () => {
                     >
                         <Input placeholder="Enter Username" className="border-gray-300 focus:border-gray-500" />
                     </Form.Item>
-
-                    {/* Email Input */}
                     <Form.Item
                         label="Email"
                         name="email"
@@ -51,8 +45,6 @@ const Register = () => {
                     >
                         <Input placeholder="Enter Email" className="border-gray-300 focus:border-gray-500" />
                     </Form.Item>
-
-                    {/* Password Input */}
                     <Form.Item
                         label="Password"
                         name="password"
@@ -60,8 +52,6 @@ const Register = () => {
                     >
                         <Input.Password placeholder="Enter Password" className="border-gray-300 focus:border-gray-500" />
                     </Form.Item>
-
-                    {/* Submit Button with RGB (41, 47, 54) */}
                     <Form.Item>
                         <Button 
                             type="primary" 
@@ -74,8 +64,6 @@ const Register = () => {
                         </Button>
                     </Form.Item>
                 </Form>
-
-                {/* Login Link */}
                 <div className="text-center">
                     <span>Already have an account? </span>
                     <Link to="/login" className="text-blue-500">Login</Link>

@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { Button } from 'antd';
 
 const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
-    
+    const navigate = useNavigate();
     useEffect(() => {
         const checkAuth = () => {
             setIsAuthenticated(!!Cookies.get('auth_token'));
@@ -19,7 +19,7 @@ const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
     const handleLogout = () => {
         Cookies.remove('auth_token', { path: '/' }); 
         setIsAuthenticated(false); 
-        window.location.href = '/login';
+        navigate('/login');
     };
 
     return (

@@ -14,9 +14,7 @@ function App() {
     const checkAuth = () => {
       setIsAuthenticated(!!Cookies.get('auth_token'));
     };
-
-    window.addEventListener('storage', checkAuth); // Listen for storage changes
-
+    window.addEventListener('storage', checkAuth);
     return () => {
       window.removeEventListener('storage', checkAuth);
     };
@@ -29,14 +27,10 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
-
-        {/* Protected Route for Profile Page */}
         <Route 
           path="/profile" 
           element={isAuthenticated ? <Profile setIsAuthenticated={setIsAuthenticated} /> : <Navigate to="/login" />} 
         />
-
-        {/* Redirect unknown routes to Home */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
